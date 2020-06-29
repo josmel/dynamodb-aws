@@ -5,13 +5,13 @@
 
 - Instalacion de dynamodb local :
 
-  ```
- sls dynamodb install
+  ```sh
+  sls dynamodb install
   ```
 
 - Ejecucion local:
 
-  ```
+  ```sh
   sls offline start --migrate
   ```
 
@@ -37,12 +37,12 @@ curl -H "Content-Type: application/json" -X POST http://localhost:3000/dev/vehic
 
 - Despliegue en aws:
 
-  ```
+  ```sh
   sls deploy
   ```
 
 
 -Pruebas test. 
- ```
-serverless invoke test — stage test -p [path/to/test-folder]
+ ```sh
+  serverless invoke test — stage test -p [path/to/test-folder]
   ```
