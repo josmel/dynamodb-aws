@@ -3,13 +3,13 @@
 
 ## Installation
 
-- Install the `@sentry/node` module as a _production dependency_ (so it gets packaged together with your source code):
+- Instalacion de dynamodb local :
 
   ```sh
  sls dynamodb install
   ```
 
-- Install the [serverless-sentry-lib](https://github.com/arabold/serverless-sentry-lib) as a _production dependency_ as well:
+- Ejecucion local:
 
   ```sh
   sls offline start --migrate
