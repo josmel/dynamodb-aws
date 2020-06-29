@@ -1,11 +1,23 @@
+org: josmelnyh89
+app: challenge-rimac-lambda-rest-api-app
 service: challenge-rimac-lambda-rest-api
 
+plugins:
+  - serverless-dynamodb-local
+  - serverless-offline
+  - serverless-mocha-plugin
+
 custom:
-  tableName: 'todos-${self:provider.stage}'
+  tableName: "vehiculos-${self:provider.stage}"
+  serverless-mocha-plugin:
+    preTestCommands:
+      - bash startOffline.sh
+    postTestCommands:
+      - bash stopOffline.sh
 
 provider:
   name: aws
-  runtime: nodejs8.10
+  runtime: nodejs12.x
   stage: dev
   region: us-east-1
   iamRoleStatements:
@@ -18,27 +30,28 @@ provider:
         - dynamodb:UpdateItem
         - dynamodb:DeleteItem
       Resource:
-        - { 'Fn::GetAtt': ['TodosDynamoDBTable', 'Arn'] }
+        - { "Fn::GetAtt": ["VehiculosDynamoDBTable", "Arn"] }
   environment:
-    TODOS_TABLE: ${self:custom.tableName}
+    VEHICULOS_TABLE: ${self:custom.tableName}
+    SLS_DEBUG: "*"
 
 functions:
-  todo-app:
+  vehiculo-app:
     handler: index.handler
     events:
       - http: ANY /
-      - http: 'ANY {proxy+}'
+      - http: "ANY {proxy+}"
 
 resources:
   Resources:
-    TodosDynamoDBTable:
-      Type: 'AWS::DynamoDB::Table'
+    VehiculosDynamoDBTable:
+      Type: "AWS::DynamoDB::Table"
       Properties:
         AttributeDefinitions:
-          - AttributeName: todoId
+          - AttributeName: vehiculoId
             AttributeType: S
         KeySchema:
-          - AttributeName: todoId
+          - AttributeName: vehiculoId
             KeyType: HASH
         ProvisionedThroughput:
           ReadCapacityUnits: 1
