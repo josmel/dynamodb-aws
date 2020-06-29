@@ -5,13 +5,13 @@
 
 - Instalacion de dynamodb local :
 
-  ```sh
+  ```
  sls dynamodb install
   ```
 
 - Ejecucion local:
 
-  ```sh
+  ```
   sls offline start --migrate
   ```
 
