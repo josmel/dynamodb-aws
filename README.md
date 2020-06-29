@@ -42,7 +42,7 @@ curl -H "Content-Type: application/json" -X POST http://localhost:3000/dev/vehic
   ```
 
 
--Pruebas test. 
+- Pruebas test. 
  ```sh
   serverless invoke test — stage test -p [path/to/test-folder]
   ```
