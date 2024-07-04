@@ -1,4 +1,4 @@
-# challenge-aws-rimac
+# challenge-aws-serverless
 
 
 ## Installation
